@@ -1,10 +1,12 @@
 window.addEventListener("load", function() {
   console.log("Hello Heart Rate!");
 
-  var targetDeviceAddress = "01:23:45:67:89:ab";
-  var targetDeviceName = "myPeripheral";
+//  var targetDeviceAddress = "01:23:45:67:89:ab";
+//  var targetDeviceName = "myPeripheral";
 //  var targetDeviceAddress = "cf:8f:d6:7c:ba:c1";
 //  var targetDeviceName = "Wahoo HRM V1.7";
+  var targetDeviceAddress = "01:23:45:67:89:ab";
+  var targetDeviceName = "MIO GLOBAL";
 
   var manager = window.navigator.mozBluetooth;
   var discoveryHandle = null;
@@ -39,7 +41,7 @@ window.addEventListener("load", function() {
             connectLeDevice(device);
           }
         }
-      })
+      });
     }
   }
 
@@ -116,7 +118,8 @@ window.addEventListener("load", function() {
           heartRate = valueBytes[1] | (valueBytes[2] << 8);
           console.log('heart rate: ' + heartRate);
         }
-        window.document.getElementById("hello").textContent = heartRate + " [" + (new Date()).toString() + " updated]";
+        window.document.getElementById("heart_rate").textContent = heartRate;
+        window.document.getElementById("update_time").textContent = (new Date()).toString();
       }
     };
   }
